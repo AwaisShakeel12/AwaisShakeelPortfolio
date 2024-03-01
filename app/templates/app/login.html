@@ -1,0 +1,95 @@
+
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<style>
+ 
+    .login-main-div{
+        background-color: white;
+        height: 300px;
+        width: 500px;
+        margin-top: 50px;
+        margin-left: 58vh;
+        border-radius: 15px;
+        box-shadow: 2px 2px 5px ;
+        align-items: center;
+    }
+    .form{
+         padding-top: 70px;
+         padding-left: 90px;
+    }
+    label{
+        border: 2px solid white;
+        background-color: white;
+        border-radius: 5px;
+        margin-right: 5vw;
+
+    }
+    input{
+        border: 2px solid blue;
+        height: 40px;
+        width: 20vw;
+        margin-left: 3.5vw;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px;
+
+    }
+    .btn{
+        margin-left: 3.5vw;
+        background-color: blue;
+        color: white;
+
+    }
+    .login-text{
+        margin-top: -5vh;
+        margin-left: 2.5vw;
+        margin-bottom: 1vh;
+    }
+</style>
+
+
+
+
+<div class="login-main-div">
+
+    
+
+{% for message in messages %}
+<ul>
+    <li> {{message}}</li>
+</ul>
+<hr>
+{% endfor %}
+    <div class="form">
+        <form action="" method="post">
+            {% csrf_token %}
+                  <h1 class="login-text">Online Ticket Booking</h1>
+            
+                <input type="text" name="username" placeholder="enter username">
+           
+            
+            <br><br>
+
+            
+
+                <input type="password" name="password" placeholder="enter password">
+            
+            <br><br>
+
+
+          
+            <input class="btn" type="submit" value="submit" />
+            
+
+
+
+        </form>
+    </div>
+          <p>dont have a account ? sign-up now
+            <a href="{%  url 'register' %}">signup</a>
+          </p>
+</div>
+
+{% endblock %}

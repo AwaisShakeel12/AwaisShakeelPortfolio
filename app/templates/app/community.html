@@ -1,0 +1,162 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static  'css/profile.css' %}" />
+
+{% block content %}
+
+
+
+<style>
+
+.body{
+    background-color: gray;
+}
+
+.home-main-div{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+.upload-box{
+    border: 1px solid black;
+    height: fit-content;
+    width: fit-content;
+    border: 3px solid black;
+}
+.username{
+    border: 1px solid gray;
+    background-color: white;
+    color: white;
+
+}
+
+.upload{
+    border: 1px;
+}
+.caption{
+    border: 1px solid gray;
+    background-color: white;
+}
+.real-caption{
+  font-size: 20px;
+  color: blueviolet;
+}
+.like{
+    border: 1px solid black;
+    height: 30px;
+    display: flex;
+    align-content: center;
+    /* justify-content: center; */
+
+
+}
+
+.save{
+  
+    margin-left: 50px;
+}
+
+
+.comment{
+    margin-left: 20px;
+}
+.home-main-div{
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr;
+}
+    .username{
+        background-color: blueviolet;
+    }
+    .comment{
+        margin-left: 120px;
+    }
+    .download{
+        margin-left: 150px;
+    }
+    .post{
+        background-color: white;
+    }
+
+</style>
+
+<div>
+    <div>
+        <br>
+        <form action="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+
+            <input type="text" name="question" placeholder="enter question">
+              <br><br>
+            <input type="file" name="image">
+            <br><br>
+            <input type="submit" value="submit" />
+        </form>
+        <br>
+
+    </div>
+</div>
+<hr>
+
+<br><br>
+
+<div class="upload">
+
+    <div class="main-post" >
+        {% for community in communitys reversed %}
+
+        {% if request.user == community.user  %}
+        <a style="color: white;" href="{% url 'deletecommunity' community.id %}">delete</a>
+        {% endif %}
+            <div class="upload-box" >
+              <a href="">
+                <div class="username">
+                </div>
+                <div class="post">
+                    <a href="{% url  'community_post_detail' community.id %}">delete post</a>
+                   
+                   <p>{{community.user}}</p>
+                </div>
+                {% if community.image %}
+                <div class="image-box-upload">
+                    <a href="{{community.image.url}}">
+                        <img height="400" width="500" src="{{community.image.url}}" alt="">
+                    </a>
+                </div>
+                {% else %}
+
+                <p>no image attach</p>
+
+                {% endif %}
+
+              
+
+                <div>
+                    <p>{{community.question}}</p>
+                </div>
+
+            
+ 
+                    
+                    <div class="comment" >
+                        <a  href="{% url  'community_post_detail' community.id %}">
+                            <div>
+                               <img style="margin-top: -5px;" height="35" width="45" src="{% static 'images/comment.png' %}" alt="">
+                            </div>
+                        </a> 
+                    </div>
+
+
+              </a>
+
+            </div>
+            
+
+            </div>
+            <br><br>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

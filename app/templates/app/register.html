@@ -1,0 +1,137 @@
+
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<style>
+ 
+    .login-main-div{
+        background-color: white;
+        height: 650px;
+        width: 500px;
+        margin-top: 50px;
+        margin-left: 58vh;
+        margin-bottom: 100px;
+        border-radius: 15px;
+        box-shadow: 2px 2px 5px ;
+        align-items: center;
+    }
+    .form{
+         padding-top: 70px;
+         padding-left: 90px;
+    }
+    label{
+        border: 2px solid white;
+        background-color: white;
+        border-radius: 5px;
+        margin-right: 5vw;
+
+    }
+    .box-input{
+        border: 2px solid blue;
+        height: 40px;
+        width: 20vw;
+        margin-left: 3.5vw;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px;
+
+    }
+    .btn{
+        margin-left: 3.5vw;
+        background-color: blue;
+        color: white;
+
+    }
+
+
+    .btn:hover{
+        background-color: forestgreen;
+    }
+
+    .login-text{
+        margin-top: -5vh;
+        margin-left: 2.5vw;
+        margin-bottom: 1vh;
+    }
+
+    .box-img{
+
+        border: 2px solid blue;
+        background-color: blueviolet;
+        color: white;
+        height: fit-content;
+        width: fit-content;
+        margin-left: 3.5vw;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px;
+
+    }
+    .choice-box{
+        margin-left: 100px;
+    }
+    .checkbox{
+        margin-left: 20px;
+    }
+</style>
+
+
+{% for message in messages %}
+
+
+{{message}}
+
+
+{% endfor %}
+{{message}}
+
+
+<div class="login-main-div">
+    <div class="form">
+        <form action="" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+                  <h1 class="login-text">Let's Create Account </h1>
+            
+                <input class="box-input" type="text" name="username" placeholder="Enter Username">
+           
+            
+                <br><br>
+
+                    <input class="box-input" type="password" name="password" placeholder="Enter Password">
+                
+                <br>
+
+                
+                <br>
+
+                    <input class="box-input" type="password" name="password1" placeholder="Re-Enter Password">
+                
+                <br>
+
+
+                <br>
+                <input class="box-input" type="email" name="email" placeholder="Enter Email"> 
+                <br>
+
+                <br>
+                <input class="box-input" type="number" name="phone_number" placeholder="Enter Phone-Number"> 
+                <br>
+
+                <br>
+
+                <br>
+                <input class="box-img" type="file" name="image"> 
+                <br><br>
+                
+
+            
+                <input   class="btn box-input" type="submit" value="submit" />
+                
+
+
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

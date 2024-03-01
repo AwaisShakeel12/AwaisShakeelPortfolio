@@ -1,0 +1,99 @@
+
+{% extends 'main.html' %}
+
+
+{% block content %}
+{% load static %}
+
+
+
+
+
+    <link rel="stylesheet" href="{% static  'css/home3.css' %}">
+
+<body>
+
+
+
+    <h1>home</h1>
+
+
+<hr>
+<div>
+    <img height="100" width="100" src="{% static 'images/awaisnew.jpg' %}" alt="">
+</div>
+<hr>
+
+
+    <div class="feedback-container">
+
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <input type="text" name="feedback" placeholder="enter feedback">
+            <br>
+            <br>
+            <select name="good_or_bad"  id="">
+                <option value="good">good</option>
+                <option value="bad">bad</option>
+
+            </select>
+            <br><br>
+
+            <input type="submit" value="submit" />
+        </form>
+
+        <div>
+            <h1>good feed backs</h1>
+            {% for feedback in feedbacks reversed %}
+            
+            <div>
+                {% if feedback.good_or_bad == 'good' %}
+                        {% if request.user == feedback.user %}
+                            <a  href="{% url 'deletefeedback' feedback.id %}">delete</a>
+                        {% endif %}
+                        <h3>{{feedback.user}}</h3>
+                        <p>{{feedback.feedback}}</p>
+                        <p>{{feedback.good_or_bad}}</p>
+                        <hr>
+                        {% else %}
+                         <p></p>
+                        <hr>
+
+                        {% endif %}
+                        
+            </div>
+                    
+                {% endfor %}
+            
+        </div>
+
+        <div>
+            <h1>bad feed backs</h1>
+            {% for feedback in feedbacks reversed %}
+            
+            <div>
+                {% if feedback.good_or_bad == 'bad' %}
+                        <a  href="{% url 'deletefeedback' feedback.id %}">delete</a>
+                        <h3>{{feedback.user}}</h3>
+                        <p>{{feedback.feedback}}</p>
+                        <p>{{feedback.good_or_bad}}</p>
+                        <hr>
+                        {% else %}
+                         <p></p>
+                        <hr>
+
+                        {% endif %}
+                        
+                    </div>
+                    
+                {% endfor %}
+            
+        </div>
+    </div>
+
+    
+</body>
+</html>
+
+{% endblock %}

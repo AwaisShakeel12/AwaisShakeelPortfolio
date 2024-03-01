@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="{% static  'javascripts/header.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/navbar_main.css' %}">
+
+</head>
+<body>
+ 
+        <nav>
+
+            <ul class="sidebar">
+                <svg onclick="hideSidebar()" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                <li><a href="">Awais Shakeel</a></li>
+                <li><a href="">home</a></li>
+                <li><a href="">plants</a></li>
+                <li><a href="">products</a></li>
+                <li><a href="">blogs</a></li>
+                <li><a href="">community</a></li>
+                <li><a href="">about</a></li>
+            </ul>
+       
+            <ul>
+                <li><a href="{% url 'home' %}">Awais shakeel</a></li>
+                <li><a href="{% url 'project' %}">project</a></li>
+                <li><a href="{% url 'community' %}">communuity</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="hideOnMobile">  <a  href="{% url 'logout' %}">logout</a></li> 
+                {% else %}
+                    <li class="hideOnMobile">  <a  href="{% url 'login' %}">login</a></li> 
+                {% endif %}
+
+
+                
+                <li class="menu-button" onclick=showSlidbar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" color="blue" viewBox="0 -960 960 960" width="26"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+            </ul>
+        </nav>
+
+
+
+ 
+</body>
+</html>

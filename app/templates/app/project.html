@@ -1,0 +1,255 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+
+
+<style>
+
+.body{
+    background-color: gray;
+}
+
+.home-main-div{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+.upload-box{
+    border: 1px solid black;
+    height: fit-content;
+    width: fit-content;
+    border: 3px solid black;
+}
+.username{
+    border: 1px solid gray;
+    background-color: white;
+    color: white;
+
+}
+
+.upload{
+    border: 1px;
+}
+.caption{
+    border: 1px solid gray;
+    background-color: white;
+}
+.real-caption{
+  font-size: 20px;
+  color: blueviolet;
+}
+.like{
+    border: 1px solid black;
+    height: 30px;
+    display: flex;
+    align-content: center;
+    /* justify-content: center; */
+
+
+}
+
+.save{
+  
+    margin-left: 50px;
+}
+
+
+.comment{
+    margin-left: 20px;
+}
+.home-main-div{
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr;
+}
+    .username{
+        background-color: blueviolet;
+    }
+    .comment{
+        margin-left: 120px;
+    }
+    .download{
+        margin-left: 150px;
+    }
+    .post{
+        background-color: white;
+    }
+
+    /* ----- project upload form css */
+    .login-main-div{
+        background-color: white;
+        height: 650px;
+        width: 500px;
+        margin-top: 50px;
+        margin-left: 2vh;
+        margin-bottom: 100px;
+        border-radius: 15px;
+        box-shadow: 2px 2px 5px ;
+        align-items: center;
+    }
+    .form{
+         padding-top: 70px;
+         padding-left: 90px;
+    }
+    label{
+        border: 2px solid white;
+        background-color: white;
+        border-radius: 5px;
+        margin-right: 5vw;
+
+    }
+    .box-input{
+        border: 2px solid blue;
+        height: 40px;
+        width: 20vw;
+        margin-left: 3.5vw;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px;
+
+    }
+    .box-input-textarea{
+        border: 2px solid blue;
+        /* height: 40px; */
+        /* width: 20vw; */
+        margin-left: 2vw;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px;
+    }
+    .btn{
+        margin-left: 3.5vw;
+        background-color: blue;
+        color: white;
+
+    }
+
+
+    .btn:hover{
+        background-color: forestgreen;
+    }
+
+    .login-text{
+        margin-top: -5vh;
+        margin-left: 2.5vw;
+        margin-bottom: 1vh;
+    }
+
+    .box-img{
+
+        border: 2px solid blue;
+        background-color: blueviolet;
+        color: white;
+        height: fit-content;
+        width: fit-content;
+        margin-left: 3.5vw;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px;
+
+    }
+    .choice-box{
+        margin-left: 100px;
+    }
+    .checkbox{
+        margin-left: 20px;
+    }
+    .main-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+</style>
+
+<div class="main-container">
+
+    
+    
+    
+
+
+
+<div class="upload">
+
+    
+
+    <div class="main-post" >
+        {% for project in projects reversed %}
+
+   
+            
+            <div class="upload-box" >
+                <div class="username">
+                </div>
+                <div class="post">
+                   
+                    <div>
+                
+                        <a href="">@{{project.user}}</a>
+                        {% if project.no_of_likes >= 3  %}
+                        <p>top blogger</p>
+                        <img height="15" width="15" src="{% static 'images/like.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                    
+                </div>
+                <div class="image-box-upload">
+                    <a href="{{project.image.url}}">
+                        <img height="400" width="500" src="{{project.image.url}}" alt="">
+                    </a>
+                </div>
+
+                <div class="caption">
+                    <p class="real-caption">caption: <b> {{project.name}}</b></p>
+                </div>
+
+                <div>
+                    <p>{{project.description}}</p>
+                </div>
+
+                <div class="like">
+                    <a href="likeproject?project_id={{project.id}}" class="">
+                        <div>
+                            <img height="30" width="30" src="{% static 'images/like.png' %}" alt="">
+                        </div>
+                    </a>
+                
+                    {% if project.no_of_likes == 0 %}
+                    <strong>no like</strong>
+                    {% elif project.no_of_likes == 1 %}  
+                    <h3>like: {{project.no_of_likes}}</h3>
+                    {% else %}
+                    <h3>like: {{project.no_of_likes}}</h3>   
+
+                    {% endif %}
+                    
+                    <div class="comment" >
+                        <a  href="">
+                            <div>
+                               <img style="margin-top: -5px;" height="35" width="45" src="{% static 'images/comment.png' %}" alt="">
+                            </div>
+                        </a> 
+                    </div>
+
+                
+                    <div class="download">
+                        <a href="{{project.image.url}}" download="">
+                            <div>
+                                <img style="margin-top: -5px;" height="40" width="40" src="{% static 'images/download.png' %}" alt="">
+                            </div>
+                        </a>
+                    </div>
+
+              </a>
+              
+            </div>
+            
+            
+        </div>
+        <br><br>
+        {% endfor %}
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
